@@ -346,7 +346,7 @@ function splashlib:draw()
     love.graphics.pop()
 
     love.graphics.setColor(255, 255, 255, 255*self.heart.scale)
-    love.graphics.draw(self.heart.sprite, 0, 5, self.heart.rot, self.heart.scale, self.heart.scale, 43, 39)
+   love.graphics.draw(self.heart.sprite, 0, 5, self.heart.rot, self.heart.scale, self.heart.scale, 43, 39)
     love.graphics.pop()
   end)
 

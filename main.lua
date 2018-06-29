@@ -1,5 +1,6 @@
 require "libs/colors";
 require "helper";
+cscreen = require "libs/cscreen";
 
 lovelyMoon = require "libs/lovelyMoon";
 
@@ -14,6 +15,8 @@ conf = {
 	game_height = 800,
 	window_width = 800,
 	window_height = 800,
+	old_window_width = 800,
+	old_window_height = 800,
 	tile_size = 32,
 	tx = 0,
 	ty = 0,
@@ -51,16 +54,22 @@ function love.load( arg )
 	--lovelyMoon.enableState("game");
 	--lovelyMoon.enableState("level_selection");
 	lovelyMoon.enableState("splash");
+	--lovelyMoon.enableState("logo_splash");
 	--lovelyMoon.enableState("menu");
+	
+	cscreen.init(800, 800, true);
+	--cscreen.setColor(bg_blue);
 end
 
 -- Update
-function love.update(dt)
+function love.update( dt )
 	lovelyMoon.event.update(dt);
 end
 
 -- Draw
 function love.draw()
+	cscreen.apply();
+	
 	lovelyMoon.event.draw();
 	
 	if conf.debug then
@@ -69,6 +78,7 @@ function love.draw()
 		love.graphics.print("FPS: " .. tostring(love.timer.getFPS( )), 2, conf.window_height - 35);
 	end
 	
+	cscreen.cease();
 end
 
 -- Key pressed
@@ -87,8 +97,20 @@ function love.keyreleased( key, scancode )
 end
 
 -- Mouse Pressed
-function love.mousepressed (x, y, button )
+function love.mousepressed ( x, y, button )
 	lovelyMoon.event.mousepressed (x, y, button);
+end
+
+function love.resize( width, height )
+	cscreen.update(width, height);
+	
+	--Set window height/width
+	conf.old_window_width = conf.window_width;
+	conf.old_window_height = conf.window_height;
+	conf.window_width = width;
+	conf.window_height = height;
+	--conf.game_width = width;
+	--conf.game_height = height;
 end
 
 function love.quit()

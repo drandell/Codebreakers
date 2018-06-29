@@ -107,7 +107,7 @@ function generate_entities(index)
 	local i = math.random(1, 2);
 	
 	if i == 1 then
-		entities[index] = {x = math.random(-200, -50), y = math.random(80, conf.window_height - 60), width = 40, height = 40, key = math.random(1, 26), letter = alpha[math.random(1, 26)], speedY = math.random(-2, 2), goal_x = conf.game_width + 100, speedX = math.random(1, 2)};
+		entities[index] = {x = math.random(-200, -50), y = math.random(80, conf.window_height - 60), width = 40, height = 40, key = math.random(1, 26), letter = alpha[math.random(1, 26)], speedY = math.random(-2, 2), goal_x = conf.window_width + 100, speedX = math.random(1, 2)};
 	else
 		entities[index] = {x = math.random(conf.window_width, conf.window_width + 200), y = math.random(80, conf.window_height - 60), width = 40, height = 40, key = math.random(1, 26), letter = alpha[math.random(1, 26)], speedY = math.random(-2, 2), goal_x = -100, speedX = math.random(-1, -2)};
 	end

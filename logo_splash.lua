@@ -1,6 +1,6 @@
 local state = {}
 
-local logo;
+local logo = {};
 local alpha = 0;
 local dev_text = 'WIZARDRY GAMES';
 local show = {start_time = 0, current_time = 0, max_show_time = 1, timer_started = false, shown  = false};
@@ -10,7 +10,9 @@ function state:new()
 end
 
 function state:load()
-	logo = love.graphics.newImage('content/logo400x400.png');
+	logo.img = love.graphics.newImage('content/logo400x400.png');
+	logo.x = (conf.game_width - logo.img:getWidth()) / 2;
+	logo.y = (conf.game_height - logo.img:getHeight()) / 2;
 end
 
 function state:close()
@@ -58,7 +60,7 @@ function state:draw()
 	love.graphics.clear(bg_blue);
 	
 	love.graphics.setColor(white[1], white[2], white[3], alpha);
-	love.graphics.draw (logo, (conf.game_width - logo:getWidth()) / 2, (conf.game_width - logo:getHeight()) / 2);
+	love.graphics.draw (logo.img, logo.x, logo.y );
 end
 
 function state:keypressed(key, unicode)

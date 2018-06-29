@@ -1,6 +1,6 @@
 local state = {}
 
-local splashes = {
+ splashes = {
   ["o-ten-one: lighten"]   = {module="content/o-ten-one", {fill="lighten"}}
 }
 
@@ -9,7 +9,12 @@ local current, splash;
 local function next_splash()
   current = next(splashes, current) or next(splashes)
   splash = splashes[current]()
-  splash.onDone = function () lovelyMoon.switchState("splash", "logo_splash"); end
+  splash.onDone = 
+		function () 
+			local settings = {resizable = true};
+			love.window.updateMode(conf.window_width, conf.window_height, settings); 
+			lovelyMoon.switchState("splash", "logo_splash"); 
+		end
 end
 
 function state:new()
@@ -48,7 +53,7 @@ function state:draw()
 end
 
 function state:keypressed(key, scancode, isrepeat)
-	
+
 end
 
 function state:keyreleased(key, scancode)
