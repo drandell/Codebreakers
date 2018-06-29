@@ -71,13 +71,13 @@ function love.draw()
 	cscreen.apply();
 	
 	lovelyMoon.event.draw();
-	
+	--[[
 	if conf.debug then
 		love.graphics.setColor(white);
 		love.graphics.setFont(standard_font);
 		love.graphics.print("FPS: " .. tostring(love.timer.getFPS( )), 2, conf.window_height - 35);
 	end
-	
+	]]--
 	cscreen.cease();
 end
 
@@ -109,8 +109,6 @@ function love.resize( width, height )
 	conf.old_window_height = conf.window_height;
 	conf.window_width = width;
 	conf.window_height = height;
-	--conf.game_width = width;
-	--conf.game_height = height;
 end
 
 function love.quit()
